@@ -1,0 +1,311 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f5f7;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 380px;
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0 0 4px;
+  text-align: center;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* ---- Home screen ---- */
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.input-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #d5d7dc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.input-row input:focus {
+  outline: 2px solid #4f7cff;
+  outline-offset: 1px;
+}
+
+.week-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.week-chip {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #d5d7dc;
+  background: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.week-chip.active {
+  background: #4f7cff;
+  border-color: #4f7cff;
+  color: white;
+}
+
+.week-chip.select-all {
+  background: #eef1f8;
+  border-style: dashed;
+}
+
+.selection-summary {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.error-message {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #c0392b;
+  background: #fdecea;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: #4f7cff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #3f6ae0;
+}
+
+.btn-secondary {
+  background: #eef1f8;
+  color: #333;
+  border: 1px solid #d5d7dc;
+}
+
+.btn-secondary:hover {
+  background: #e2e6f0;
+}
+
+.start-btn {
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* ---- Study screen ---- */
+
+.study-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  border: none;
+  background: #eef1f8;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background: #e2e6f0;
+}
+
+.progress-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #e2e5ec;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #4caf50;
+  transition: width 0.25s ease;
+}
+
+.progress-label {
+  margin: -6px 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.flashcard-wrap {
+  perspective: 1200px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.flashcard-front .char {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.flashcard-back .pinyin {
+  font-size: 1.6rem;
+  color: #4f7cff;
+  font-weight: 600;
+}
+
+.flashcard-back .def {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.tap-hint {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.answer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.answer-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+}
+
+.answer-btn.correct {
+  background: #4caf50;
+}
+
+.answer-btn.wrong {
+  background: #e74c3c;
+}
+
+.answer-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ---- Done screen ---- */
+
+.done-screen {
+  align-items: center;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.done-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 12px;
+}
