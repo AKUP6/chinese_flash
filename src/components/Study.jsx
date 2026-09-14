@@ -52,7 +52,9 @@ export default function Study({ cards, onFinish, onBackHome, onReset }) {
         {learned} / {total} learned
       </p>
 
-      {current && <Flashcard card={current} flipped={flipped} onFlip={handleFlip} />}
+      {current && (
+        <Flashcard key={current.id} card={current} flipped={flipped} onFlip={handleFlip} />
+      )}
 
       <p className="tap-hint">{flipped ? 'How did you do?' : 'Tap the card to flip'}</p>
 
