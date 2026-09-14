@@ -33,8 +33,8 @@ the home screen.
 
 ## How studying works
 
-- On the home screen, pick weeks by typing a number/range (e.g. `2` or `1-3`)
-  or by tapping the week buttons, then hit **Start**.
+- On the home screen, tap the week buttons you want to study (or **Select
+  all**), then hit **Start**.
 - Cards are shuffled and shown character-side up. Tap a card to flip it and
   reveal the pinyin + English definition.
 - After flipping, mark it with ✓ (got it) or ✕ (review again). Cards marked ✕

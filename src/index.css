@@ -46,33 +46,6 @@ h1 {
 
 /* ---- Home screen ---- */
 
-.field label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #444;
-}
-
-.input-row {
-  display: flex;
-  gap: 8px;
-}
-
-.input-row input {
-  flex: 1;
-  min-width: 0;
-  padding: 10px 12px;
-  border: 1px solid #d5d7dc;
-  border-radius: 10px;
-  font-size: 1rem;
-}
-
-.input-row input:focus {
-  outline: 2px solid #4f7cff;
-  outline-offset: 1px;
-}
-
 .week-buttons {
   display: flex;
   flex-wrap: wrap;
