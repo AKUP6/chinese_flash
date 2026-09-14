@@ -17,4 +17,5 @@ export default [
   { char: '再见', pinyin: 'zàijiàn', def: 'goodbye' },
   { char: '友', pinyin: 'yǒu', def: 'friend' },
   { char: '也', pinyin: 'yě', def: 'also' },
+  { char: '耶鲁', pinyin: 'Yēlǔ', def: 'Yale' },
 ]
