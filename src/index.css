@@ -46,6 +46,259 @@ h1 {
 
 /* ---- Home screen ---- */
 
+.meme-banner {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  border-radius: 16px;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.meme-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #7dd3e8 0%, #45b3d4 65%, #2f9dc0 100%);
+}
+
+.meme-bubble {
+  position: absolute;
+  opacity: 0.55;
+  font-size: 0.9rem;
+  filter: grayscale(1) brightness(2);
+}
+
+.meme-bubble.b1 {
+  top: 14px;
+  left: 18px;
+  font-size: 0.7rem;
+}
+
+.meme-bubble.b2 {
+  top: 34px;
+  left: 34px;
+  font-size: 1rem;
+}
+
+.meme-bubble.b3 {
+  top: 10px;
+  right: 90px;
+  font-size: 0.6rem;
+}
+
+.meme-coral {
+  position: absolute;
+  bottom: 34px;
+  right: 14px;
+  font-size: 1.4rem;
+  opacity: 0.85;
+  transform: rotate(-8deg);
+}
+
+.meme-scene {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 34px;
+}
+
+.meme-char {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Squidward */
+
+.squid-head {
+  position: relative;
+  width: 46px;
+  height: 40px;
+  background: #b9c9c6;
+  border-radius: 50% 50% 45% 45%;
+}
+
+.squid-eye {
+  position: absolute;
+  top: 12px;
+  width: 12px;
+  height: 9px;
+  background: #f4f7f6;
+  border-radius: 50%;
+}
+
+.squid-eye.l {
+  left: 6px;
+}
+
+.squid-eye.r {
+  right: 6px;
+}
+
+.squid-pupil {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 5px;
+  height: 5px;
+  background: #3a3a3a;
+  border-radius: 50%;
+}
+
+.squid-nose {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 30px;
+  background: #b9c9c6;
+  border-radius: 40% 40% 60% 60%;
+}
+
+.squid-shirt {
+  width: 38px;
+  height: 10px;
+  margin-top: 22px;
+  background: #8a5a34;
+  border-radius: 4px 4px 0 0;
+}
+
+.squid-body {
+  width: 42px;
+  height: 46px;
+  background: #b9c9c6;
+  clip-path: polygon(28% 0, 72% 0, 100% 100%, 0% 100%);
+}
+
+.squid-feet {
+  display: flex;
+  gap: 14px;
+  margin-top: -2px;
+}
+
+.squid-feet span {
+  width: 10px;
+  height: 6px;
+  background: #7c8c89;
+  border-radius: 50%;
+}
+
+/* SpongeBob */
+
+.sponge-body {
+  position: relative;
+  width: 56px;
+  height: 60px;
+  background: #f6d745;
+  border-radius: 10px;
+  border: 2px solid #d8b520;
+}
+
+.sponge-eye {
+  position: absolute;
+  top: 12px;
+  width: 14px;
+  height: 16px;
+  background: #fdfdf7;
+  border-radius: 50%;
+  border: 1px solid #d8b520;
+}
+
+.sponge-eye.l {
+  left: 8px;
+}
+
+.sponge-eye.r {
+  right: 8px;
+}
+
+.sponge-pupil {
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: #3a6fd8;
+  border-radius: 50%;
+}
+
+.sponge-cheek {
+  position: absolute;
+  top: 32px;
+  width: 8px;
+  height: 5px;
+  background: #f2a5b0;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.sponge-cheek.l {
+  left: 6px;
+}
+
+.sponge-cheek.r {
+  right: 6px;
+}
+
+.sponge-mouth {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 14px;
+  background: #a13b2b;
+  border-radius: 0 0 15px 15px;
+}
+
+.sponge-legs {
+  display: flex;
+  gap: 26px;
+  margin-top: -1px;
+}
+
+.sponge-legs span {
+  width: 2px;
+  height: 8px;
+  background: #3a3a3a;
+}
+
+.meme-sand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #e3cf8f;
+}
+
+.meme-caption {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: white;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 2px 3px rgba(0, 0, 0, 0.4);
+  padding: 0 8px;
+}
+
 .week-buttons {
   display: flex;
   flex-wrap: wrap;

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Check, Play } from 'lucide-react'
+import MemeBanner from './MemeBanner'
 
 export default function Home({ weeksMap, onStart }) {
   const availableWeeks = Object.keys(weeksMap).map(Number).sort((a, b) => a - b)
@@ -31,6 +32,8 @@ export default function Home({ weeksMap, onStart }) {
 
   return (
     <div className="screen home-screen">
+      <MemeBanner />
+
       <h1>Chinese Flashcards</h1>
       <p className="subtitle">Pick which weeks to study</p>
 
