@@ -383,8 +383,14 @@ h1 {
 
 /* ---- Week preview ---- */
 
-.week-preview {
+.week-preview-list {
   margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.week-preview {
   background: white;
   border-radius: 14px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -440,7 +446,7 @@ h1 {
 }
 
 @media (min-width: 760px) {
-  .week-preview {
+  .week-preview-list {
     position: fixed;
     top: 50%;
     left: calc(50% + 210px);

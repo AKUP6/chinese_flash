@@ -7,11 +7,10 @@ export default function Home({ weeksMap, onStart }) {
   const availableWeeks = Object.keys(weeksMap).map(Number).sort((a, b) => a - b)
   const [selected, setSelected] = useState(new Set())
   const [error, setError] = useState(null)
-  const [previewWeek, setPreviewWeek] = useState(null)
+  const sortedSelected = [...selected].sort((a, b) => a - b)
 
   function toggleWeek(week) {
     setError(null)
-    setPreviewWeek(week)
     setSelected((prev) => {
       const next = new Set(prev)
       if (next.has(week)) next.delete(week)
@@ -58,9 +57,7 @@ export default function Home({ weeksMap, onStart }) {
       </div>
 
       {selected.size > 0 && (
-        <p className="selection-summary">
-          Selected: {[...selected].sort((a, b) => a - b).join(', ')}
-        </p>
+        <p className="selection-summary">Selected: {sortedSelected.join(', ')}</p>
       )}
 
       {error && <p className="error-message">{error}</p>}
@@ -70,12 +67,17 @@ export default function Home({ weeksMap, onStart }) {
         Start
       </button>
 
-      {previewWeek !== null && (
-        <WeekPreview
-          week={previewWeek}
-          cards={weeksMap[previewWeek]}
-          onClose={() => setPreviewWeek(null)}
-        />
+      {sortedSelected.length > 0 && (
+        <div className="week-preview-list">
+          {sortedSelected.map((week) => (
+            <WeekPreview
+              key={week}
+              week={week}
+              cards={weeksMap[week]}
+              onClose={() => toggleWeek(week)}
+            />
+          ))}
+        </div>
       )}
     </div>
   )
