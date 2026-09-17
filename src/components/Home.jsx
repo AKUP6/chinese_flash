@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { Check, Play } from 'lucide-react'
 import MemeBanner from './MemeBanner'
+import WeekPreview from './WeekPreview'
 
 export default function Home({ weeksMap, onStart }) {
   const availableWeeks = Object.keys(weeksMap).map(Number).sort((a, b) => a - b)
   const [selected, setSelected] = useState(new Set())
   const [error, setError] = useState(null)
+  const [previewWeek, setPreviewWeek] = useState(null)
 
   function toggleWeek(week) {
     setError(null)
+    setPreviewWeek(week)
     setSelected((prev) => {
       const next = new Set(prev)
       if (next.has(week)) next.delete(week)
@@ -66,6 +69,14 @@ export default function Home({ weeksMap, onStart }) {
         <Play size={18} />
         Start
       </button>
+
+      {previewWeek !== null && (
+        <WeekPreview
+          week={previewWeek}
+          cards={weeksMap[previewWeek]}
+          onClose={() => setPreviewWeek(null)}
+        />
+      )}
     </div>
   )
 }

@@ -381,6 +381,77 @@ h1 {
   width: 100%;
 }
 
+/* ---- Week preview ---- */
+
+.week-preview {
+  margin-top: 4px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 14px;
+  animation: card-slide-in 0.25s ease-out;
+}
+
+.week-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.week-preview-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.week-preview-table-wrap {
+  overflow-x: auto;
+}
+
+.week-preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.week-preview-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #888;
+  padding: 4px 8px 6px 0;
+  border-bottom: 1px solid #e2e5ec;
+}
+
+.week-preview-table td {
+  padding: 6px 8px 6px 0;
+  border-bottom: 1px solid #f0f1f5;
+  vertical-align: top;
+}
+
+.week-preview-table tr:last-child td {
+  border-bottom: none;
+}
+
+.week-preview-char {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (min-width: 760px) {
+  .week-preview {
+    position: fixed;
+    top: 50%;
+    left: calc(50% + 210px);
+    transform: translateY(-50%);
+    width: 320px;
+    max-height: 82vh;
+    overflow-y: auto;
+    margin-top: 0;
+  }
+}
+
 /* ---- Study screen ---- */
 
 .study-header {
