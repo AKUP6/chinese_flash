@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Check, Play } from 'lucide-react'
+import { Check, Play, ArrowLeftRight } from 'lucide-react'
 import MemeBanner from './MemeBanner'
 import WeekPreview from './WeekPreview'
 
@@ -7,6 +7,7 @@ export default function Home({ weeksMap, onStart }) {
   const availableWeeks = Object.keys(weeksMap).map(Number).sort((a, b) => a - b)
   const [selected, setSelected] = useState(new Set())
   const [error, setError] = useState(null)
+  const [reverse, setReverse] = useState(false)
   const sortedSelected = [...selected].sort((a, b) => a - b)
 
   function toggleWeek(week) {
@@ -29,7 +30,7 @@ export default function Home({ weeksMap, onStart }) {
       setError('Select at least one week to start.')
       return
     }
-    onStart([...selected].sort((a, b) => a - b))
+    onStart([...selected].sort((a, b) => a - b), reverse)
   }
 
   return (
@@ -61,6 +62,15 @@ export default function Home({ weeksMap, onStart }) {
       )}
 
       {error && <p className="error-message">{error}</p>}
+
+      <button
+        type="button"
+        className={`reverse-toggle ${reverse ? 'active' : ''}`}
+        onClick={() => setReverse((r) => !r)}
+      >
+        <ArrowLeftRight size={16} />
+        {reverse ? 'Reverse mode: meaning → character' : 'Normal mode: character → meaning'}
+      </button>
 
       <button type="button" className="btn-primary start-btn" onClick={handleStart}>
         <Play size={18} />

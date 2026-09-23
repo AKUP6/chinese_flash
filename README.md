@@ -35,8 +35,11 @@ the home screen.
 
 - On the home screen, tap the week buttons you want to study (or **Select
   all**), then hit **Start**.
-- Cards are shuffled and shown character-side up. Tap a card to flip it and
-  reveal the pinyin + English definition.
+- Toggle **Reverse mode** to flip which side you see first: normal mode shows
+  the character and flips to reveal pinyin + definition; reverse mode shows
+  the pinyin + definition first and flips to reveal the character.
+- Cards are shuffled and shown character-side up (or meaning-side up in
+  reverse mode). Tap a card to flip it and reveal the other side.
 - After flipping, mark it with ✓ (got it) or ✕ (review again). Cards marked ✕
   go to the back of the queue and keep coming back until you get them right.
 - The progress bar tracks how many cards you've cleared. Use **Reset** to

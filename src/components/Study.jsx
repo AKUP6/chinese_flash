@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Check, X, RotateCcw, Home } from 'lucide-react'
 import Flashcard from './Flashcard'
 
-export default function Study({ cards, onFinish, onBackHome, onReset }) {
+export default function Study({ cards, reverse, onFinish, onBackHome, onReset }) {
   const [queue, setQueue] = useState(cards)
   const [flipped, setFlipped] = useState(false)
   const total = cards.length
@@ -53,7 +53,13 @@ export default function Study({ cards, onFinish, onBackHome, onReset }) {
       </p>
 
       {current && (
-        <Flashcard key={current.id} card={current} flipped={flipped} onFlip={handleFlip} />
+        <Flashcard
+          key={current.id}
+          card={current}
+          flipped={flipped}
+          onFlip={handleFlip}
+          reverse={reverse}
+        />
       )}
 
       <p className="tap-hint">{flipped ? 'How did you do?' : 'Tap the card to flip'}</p>

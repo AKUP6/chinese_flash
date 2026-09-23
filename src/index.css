@@ -381,6 +381,28 @@ h1 {
   width: 100%;
 }
 
+.reverse-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #d5d7dc;
+  background: white;
+  color: #444;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reverse-toggle.active {
+  background: #eef1ff;
+  border-color: #4f7cff;
+  color: #4f7cff;
+}
+
 /* ---- Week preview ---- */
 
 .week-preview-list {
@@ -550,7 +572,7 @@ h1 {
   text-align: center;
 }
 
-.flashcard-front .char {
+.char {
   font-size: 4rem;
   font-weight: 600;
 }
@@ -559,13 +581,13 @@ h1 {
   transform: rotateY(180deg);
 }
 
-.flashcard-back .pinyin {
+.pinyin {
   font-size: 1.6rem;
   color: #4f7cff;
   font-weight: 600;
 }
 
-.flashcard-back .def {
+.def {
   font-size: 1.1rem;
   color: #333;
 }

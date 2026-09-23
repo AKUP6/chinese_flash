@@ -16,11 +16,13 @@ export default function App() {
   const [screen, setScreen] = useState('home')
   const [selectedWeeks, setSelectedWeeks] = useState([])
   const [deck, setDeck] = useState([])
+  const [reverse, setReverse] = useState(false)
   const [sessionId, setSessionId] = useState(0)
 
-  function handleStart(weeks) {
+  function handleStart(weeks, reverseMode) {
     setSelectedWeeks(weeks)
     setDeck(buildDeck(weeks))
+    setReverse(reverseMode)
     setSessionId((id) => id + 1)
     setScreen('study')
   }
@@ -46,6 +48,7 @@ export default function App() {
         <Study
           key={sessionId}
           cards={deck}
+          reverse={reverse}
           onFinish={handleFinish}
           onBackHome={handleBackHome}
           onReset={handleReset}
