@@ -18,7 +18,7 @@ export default [
   { char: '因', pinyin: 'yīn', def: 'because / cause (used in 因为)' },
   { char: '为', pinyin: 'wèi', def: 'for / because of (used in 因为)' },
   { char: '认', pinyin: 'rèn', def: 'to recognize (used in 认识)' },
-  { char: '识', pinyin: 'shí', def: 'to know / to recognize (used in 认识)' },
+  { char: '识', pinyin: 'shi', def: 'to know / to recognize (used in 认识, neutral tone here)' },
   { char: '同', pinyin: 'tóng', def: 'same / together (used in 同学, classmate)' },
   { char: '周', pinyin: 'zhōu', def: 'week' },
   { char: '打', pinyin: 'dǎ', def: 'to hit / to play (used in 打球)' },
