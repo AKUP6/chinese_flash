@@ -1,36 +1,37 @@
 import { useState } from 'react'
-import { Check, Play, ArrowLeftRight } from 'lucide-react'
+import { Check, Play, ArrowLeftRight, Pencil } from 'lucide-react'
 import MemeBanner from './MemeBanner'
-import WeekPreview from './WeekPreview'
+import UnitPreview from './UnitPreview'
 
-export default function Home({ weeksMap, onStart }) {
-  const availableWeeks = Object.keys(weeksMap).map(Number).sort((a, b) => a - b)
+export default function Home({ unitsMap, onStart }) {
+  const availableUnits = Object.keys(unitsMap).map(Number).sort((a, b) => a - b)
   const [selected, setSelected] = useState(new Set())
   const [error, setError] = useState(null)
-  const [reverse, setReverse] = useState(false)
+  const [mode, setMode] = useState('normal')
+  const [writingPrompt, setWritingPrompt] = useState('pinyin')
   const sortedSelected = [...selected].sort((a, b) => a - b)
 
-  function toggleWeek(week) {
+  function toggleUnit(unit) {
     setError(null)
     setSelected((prev) => {
       const next = new Set(prev)
-      if (next.has(week)) next.delete(week)
-      else next.add(week)
+      if (next.has(unit)) next.delete(unit)
+      else next.add(unit)
       return next
     })
   }
 
   function selectAll() {
     setError(null)
-    setSelected(new Set(availableWeeks))
+    setSelected(new Set(availableUnits))
   }
 
   function handleStart() {
     if (selected.size === 0) {
-      setError('Select at least one week to start.')
+      setError('Select at least one unit to start.')
       return
     }
-    onStart([...selected].sort((a, b) => a - b), reverse)
+    onStart([...selected].sort((a, b) => a - b), { mode, writingPrompt })
   }
 
   return (
@@ -38,20 +39,20 @@ export default function Home({ weeksMap, onStart }) {
       <MemeBanner />
 
       <h1>Chinese Flashcards</h1>
-      <p className="subtitle">Pick which weeks to study</p>
+      <p className="subtitle">Pick which units to study</p>
 
-      <div className="week-buttons">
-        {availableWeeks.map((week) => (
+      <div className="unit-buttons">
+        {availableUnits.map((unit) => (
           <button
-            key={week}
+            key={unit}
             type="button"
-            className={`week-chip ${selected.has(week) ? 'active' : ''}`}
-            onClick={() => toggleWeek(week)}
+            className={`unit-chip ${selected.has(unit) ? 'active' : ''}`}
+            onClick={() => toggleUnit(unit)}
           >
-            Week {week}
+            Unit {unit}
           </button>
         ))}
-        <button type="button" className="week-chip select-all" onClick={selectAll}>
+        <button type="button" className="unit-chip select-all" onClick={selectAll}>
           <Check size={14} />
           Select all
         </button>
@@ -63,14 +64,54 @@ export default function Home({ weeksMap, onStart }) {
 
       {error && <p className="error-message">{error}</p>}
 
-      <button
-        type="button"
-        className={`reverse-toggle ${reverse ? 'active' : ''}`}
-        onClick={() => setReverse((r) => !r)}
-      >
-        <ArrowLeftRight size={16} />
-        {reverse ? 'Reverse mode: meaning → character' : 'Normal mode: character → meaning'}
-      </button>
+      <div className="mode-selector">
+        <p className="mode-label">Study mode</p>
+        <div className="mode-buttons">
+          <button
+            type="button"
+            className={`mode-btn ${mode === 'normal' ? 'active' : ''}`}
+            onClick={() => setMode('normal')}
+          >
+            Character → Meaning
+          </button>
+          <button
+            type="button"
+            className={`mode-btn ${mode === 'reverse' ? 'active' : ''}`}
+            onClick={() => setMode('reverse')}
+          >
+            <ArrowLeftRight size={14} />
+            Meaning → Character
+          </button>
+          <button
+            type="button"
+            className={`mode-btn ${mode === 'writing' ? 'active' : ''}`}
+            onClick={() => setMode('writing')}
+          >
+            <Pencil size={14} />
+            Writing
+          </button>
+        </div>
+
+        {mode === 'writing' && (
+          <div className="writing-prompt-toggle">
+            <span>Prompt with:</span>
+            <button
+              type="button"
+              className={writingPrompt === 'pinyin' ? 'active' : ''}
+              onClick={() => setWritingPrompt('pinyin')}
+            >
+              Pinyin
+            </button>
+            <button
+              type="button"
+              className={writingPrompt === 'meaning' ? 'active' : ''}
+              onClick={() => setWritingPrompt('meaning')}
+            >
+              Meaning
+            </button>
+          </div>
+        )}
+      </div>
 
       <button type="button" className="btn-primary start-btn" onClick={handleStart}>
         <Play size={18} />
@@ -78,13 +119,13 @@ export default function Home({ weeksMap, onStart }) {
       </button>
 
       {sortedSelected.length > 0 && (
-        <div className="week-preview-list">
-          {sortedSelected.map((week) => (
-            <WeekPreview
-              key={week}
-              week={week}
-              cards={weeksMap[week]}
-              onClose={() => toggleWeek(week)}
+        <div className="unit-preview-list">
+          {sortedSelected.map((unit) => (
+            <UnitPreview
+              key={unit}
+              unit={unit}
+              cards={unitsMap[unit]}
+              onClose={() => toggleUnit(unit)}
             />
           ))}
         </div>

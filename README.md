@@ -1,6 +1,7 @@
 # Chinese Flashcards
 
-A Quizlet-style flashcard app for studying Chinese vocabulary, organized by week.
+A Quizlet-style flashcard app for studying Chinese vocabulary, organized by
+unit.
 
 ## Running it
 
@@ -13,8 +14,8 @@ Then open the printed local URL in your browser.
 
 ## Adding vocabulary
 
-Cards live in `src/weeks/weekN.js`, one file per week. Each file default-exports
-an array of `{ char, pinyin, def }` objects:
+Cards live in `src/units/unitN.js`, one file per unit. Each file
+default-exports an array of `{ char, pinyin, def }` objects:
 
 ```js
 export default [
@@ -22,26 +23,31 @@ export default [
 ]
 ```
 
-To add a new week:
+To add a new unit:
 
-1. Create `src/weeks/week3.js` (copy the shape above).
-2. Register it in `src/weeks/index.js` by importing it and adding one line to
-   the exported map, e.g. `3: week3`.
+1. Create `src/units/unit5.js` (copy the shape above).
+2. Register it in `src/units/index.js` by importing it and adding one line to
+   the exported map, e.g. `5: unit5`.
 
-That's it — the new week will automatically show up as a selectable option on
+That's it — the new unit will automatically show up as a selectable option on
 the home screen.
 
 ## How studying works
 
-- On the home screen, tap the week buttons you want to study (or **Select
+- On the home screen, tap the unit buttons you want to study (or **Select
   all**), then hit **Start**.
-- Toggle **Reverse mode** to flip which side you see first: normal mode shows
-  the character and flips to reveal pinyin + definition; reverse mode shows
-  the pinyin + definition first and flips to reveal the character.
-- Cards are shuffled and shown character-side up (or meaning-side up in
-  reverse mode). Tap a card to flip it and reveal the other side.
-- After flipping, mark it with ✓ (got it) or ✕ (review again). Cards marked ✕
-  go to the back of the queue and keep coming back until you get them right.
+- Pick a **study mode**:
+  - **Character → Meaning** (default) — shows the character, flips to reveal
+    pinyin + definition.
+  - **Meaning → Character** (reverse) — shows pinyin + definition first,
+    flips to reveal the character.
+  - **Writing** — shows only the pinyin *or* the meaning (toggle which),
+    a prompt to write the character by hand (on paper, an iPad, wherever —
+    the app doesn't see or check your handwriting), then flip to reveal the
+    character plus the other piece of info for a quick self-check.
+- After flipping, mark it with ✓ (got it) or ✕ (review again), same as any
+  mode. Cards marked ✕ go to the back of the queue and keep coming back
+  until you get them right.
 - The progress bar tracks how many cards you've cleared. Use **Reset** to
-  restart the current session, or the home icon to change your week
+  restart the current session, or the home icon to change your unit
   selection.

@@ -1,34 +1,34 @@
 import { useState } from 'react'
-import weeksMap from './weeks'
+import unitsMap from './units'
 import { shuffle } from './lib/shuffle'
 import Home from './components/Home'
 import Study from './components/Study'
 import Done from './components/Done'
 
-function buildDeck(weeks) {
-  const combined = weeks.flatMap((week) =>
-    weeksMap[week].map((card, i) => ({ ...card, id: `${week}-${i}-${card.char}` }))
+function buildDeck(units) {
+  const combined = units.flatMap((unit) =>
+    unitsMap[unit].map((card, i) => ({ ...card, id: `${unit}-${i}-${card.char}` }))
   )
   return shuffle(combined)
 }
 
 export default function App() {
   const [screen, setScreen] = useState('home')
-  const [selectedWeeks, setSelectedWeeks] = useState([])
+  const [selectedUnits, setSelectedUnits] = useState([])
   const [deck, setDeck] = useState([])
-  const [reverse, setReverse] = useState(false)
+  const [studyMode, setStudyMode] = useState({ mode: 'normal', writingPrompt: 'pinyin' })
   const [sessionId, setSessionId] = useState(0)
 
-  function handleStart(weeks, reverseMode) {
-    setSelectedWeeks(weeks)
-    setDeck(buildDeck(weeks))
-    setReverse(reverseMode)
+  function handleStart(units, mode) {
+    setSelectedUnits(units)
+    setDeck(buildDeck(units))
+    setStudyMode(mode)
     setSessionId((id) => id + 1)
     setScreen('study')
   }
 
   function handleReset() {
-    setDeck(buildDeck(selectedWeeks))
+    setDeck(buildDeck(selectedUnits))
     setSessionId((id) => id + 1)
     setScreen('study')
   }
@@ -43,12 +43,13 @@ export default function App() {
 
   return (
     <div className="app">
-      {screen === 'home' && <Home weeksMap={weeksMap} onStart={handleStart} />}
+      {screen === 'home' && <Home unitsMap={unitsMap} onStart={handleStart} />}
       {screen === 'study' && (
         <Study
           key={sessionId}
           cards={deck}
-          reverse={reverse}
+          mode={studyMode.mode}
+          writingPrompt={studyMode.writingPrompt}
           onFinish={handleFinish}
           onBackHome={handleBackHome}
           onReset={handleReset}
