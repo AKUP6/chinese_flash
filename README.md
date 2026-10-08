@@ -52,6 +52,9 @@ the home screen.
   selection at once: the first 4 cards, then the next 5, then 6, then 7, and
   so on. Each batch has to be fully cleared (every card gotten right at
   least once) before the next, larger batch is introduced.
+  - Combined with **Writing** mode, known compound pairs (什么, 老师, 电视,
+    喜欢, etc. — see `src/lib/pairs.js`) are kept in the same batch instead
+    of being split across two, so you write both halves of a word together.
 - The progress bar tracks how many cards you've cleared out of the whole
   selection, regardless of mode. Use **Reset** to restart the current
   session, or the home icon to change your unit selection.

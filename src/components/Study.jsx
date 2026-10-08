@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Check, X, RotateCcw, Home } from 'lucide-react'
 import Flashcard from './Flashcard'
-import { chunkIncreasing } from '../lib/groupCards'
+import { chunkIncreasing, chunkIncreasingWithPairs } from '../lib/groupCards'
 
 export default function Study({
   cards,
@@ -12,7 +12,10 @@ export default function Study({
   onBackHome,
   onReset,
 }) {
-  const [groups] = useState(() => (learningMode ? chunkIncreasing(cards) : [cards]))
+  const [groups] = useState(() => {
+    if (!learningMode) return [cards]
+    return mode === 'writing' ? chunkIncreasingWithPairs(cards) : chunkIncreasing(cards)
+  })
   const [groupIndex, setGroupIndex] = useState(0)
   const [queue, setQueue] = useState(() => groups[0])
   const [learnedCount, setLearnedCount] = useState(0)
@@ -73,6 +76,7 @@ export default function Study({
         <p className="group-label">
           Group {groupIndex + 1} of {groups.length} · {groupSize} word
           {groupSize === 1 ? '' : 's'}
+          {mode === 'writing' ? ' (pairs kept together)' : ''}
         </p>
       )}
 

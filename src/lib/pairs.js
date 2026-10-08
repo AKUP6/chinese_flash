@@ -1,0 +1,31 @@
+// Characters that commonly appear together as a compound word (or a tightly
+// linked duo like 男女/爸妈). Used by writing-mode learning groups to avoid
+// splitting a pair across two different batches.
+export const KNOWN_PAIRS = [
+  ['你', '好'],
+  ['什', '么'],
+  ['名', '字'],
+  ['学', '生'],
+  ['朋', '友'],
+  ['老', '师'],
+  ['请', '问'],
+  ['贵', '姓'],
+  ['照', '片'],
+  ['这', '个'],
+  ['星', '期'],
+  ['没', '有'],
+  ['爸', '妈'],
+  ['男', '女'],
+  ['今', '年'],
+  ['怎', '样'],
+  ['喜', '欢'],
+  ['现', '在'],
+  ['因', '为'],
+  ['认', '识'],
+  ['打', '球'],
+  ['电', '视'],
+  ['唱', '歌'],
+  ['跳', '舞'],
+  ['音', '乐'],
+  ['觉', '得'],
+]
