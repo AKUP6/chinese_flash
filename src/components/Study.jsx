@@ -1,13 +1,25 @@
 import { useState } from 'react'
 import { Check, X, RotateCcw, Home } from 'lucide-react'
 import Flashcard from './Flashcard'
+import { chunkIncreasing } from '../lib/groupCards'
 
-export default function Study({ cards, mode, writingPrompt, onFinish, onBackHome, onReset }) {
-  const [queue, setQueue] = useState(cards)
+export default function Study({
+  cards,
+  mode,
+  writingPrompt,
+  learningMode,
+  onFinish,
+  onBackHome,
+  onReset,
+}) {
+  const [groups] = useState(() => (learningMode ? chunkIncreasing(cards) : [cards]))
+  const [groupIndex, setGroupIndex] = useState(0)
+  const [queue, setQueue] = useState(() => groups[0])
+  const [learnedCount, setLearnedCount] = useState(0)
   const [flipped, setFlipped] = useState(false)
   const total = cards.length
-  const learned = total - queue.length
   const current = queue[0]
+  const groupSize = groups[groupIndex].length
 
   function handleFlip() {
     setFlipped((f) => !f)
@@ -17,10 +29,15 @@ export default function Study({ cards, mode, writingPrompt, onFinish, onBackHome
     if (!flipped) return
     const rest = queue.slice(1)
     setFlipped(false)
-    if (rest.length === 0) {
-      onFinish()
-    } else {
+    setLearnedCount((c) => c + 1)
+
+    if (rest.length > 0) {
       setQueue(rest)
+    } else if (groupIndex + 1 < groups.length) {
+      setGroupIndex((i) => i + 1)
+      setQueue(groups[groupIndex + 1])
+    } else {
+      onFinish()
     }
   }
 
@@ -40,7 +57,7 @@ export default function Study({ cards, mode, writingPrompt, onFinish, onBackHome
         <div className="progress-bar-track">
           <div
             className="progress-bar-fill"
-            style={{ width: `${total === 0 ? 0 : (learned / total) * 100}%` }}
+            style={{ width: `${total === 0 ? 0 : (learnedCount / total) * 100}%` }}
           />
         </div>
         <button type="button" className="icon-btn" onClick={onReset} title="Reset">
@@ -49,8 +66,15 @@ export default function Study({ cards, mode, writingPrompt, onFinish, onBackHome
       </div>
 
       <p className="progress-label">
-        {learned} / {total} learned
+        {learnedCount} / {total} learned
       </p>
+
+      {learningMode && (
+        <p className="group-label">
+          Group {groupIndex + 1} of {groups.length} · {groupSize} word
+          {groupSize === 1 ? '' : 's'}
+        </p>
+      )}
 
       {current && (
         <Flashcard

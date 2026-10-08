@@ -16,7 +16,11 @@ export default function App() {
   const [screen, setScreen] = useState('home')
   const [selectedUnits, setSelectedUnits] = useState([])
   const [deck, setDeck] = useState([])
-  const [studyMode, setStudyMode] = useState({ mode: 'normal', writingPrompt: 'pinyin' })
+  const [studyMode, setStudyMode] = useState({
+    mode: 'normal',
+    writingPrompt: 'pinyin',
+    learningMode: false,
+  })
   const [sessionId, setSessionId] = useState(0)
 
   function handleStart(units, mode) {
@@ -50,6 +54,7 @@ export default function App() {
           cards={deck}
           mode={studyMode.mode}
           writingPrompt={studyMode.writingPrompt}
+          learningMode={studyMode.learningMode}
           onFinish={handleFinish}
           onBackHome={handleBackHome}
           onReset={handleReset}

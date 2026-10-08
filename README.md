@@ -48,6 +48,10 @@ the home screen.
 - After flipping, mark it with ✓ (got it) or ✕ (review again), same as any
   mode. Cards marked ✕ go to the back of the queue and keep coming back
   until you get them right.
-- The progress bar tracks how many cards you've cleared. Use **Reset** to
-  restart the current session, or the home icon to change your unit
-  selection.
+- Toggle **Learning mode** to study in growing batches instead of the whole
+  selection at once: the first 4 cards, then the next 5, then 6, then 7, and
+  so on. Each batch has to be fully cleared (every card gotten right at
+  least once) before the next, larger batch is introduced.
+- The progress bar tracks how many cards you've cleared out of the whole
+  selection, regardless of mode. Use **Reset** to restart the current
+  session, or the home icon to change your unit selection.

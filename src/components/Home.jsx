@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Check, Play, ArrowLeftRight, Pencil } from 'lucide-react'
+import { Check, Play, ArrowLeftRight, Pencil, Layers } from 'lucide-react'
 import MemeBanner from './MemeBanner'
 import UnitPreview from './UnitPreview'
 
@@ -9,6 +9,7 @@ export default function Home({ unitsMap, onStart }) {
   const [error, setError] = useState(null)
   const [mode, setMode] = useState('normal')
   const [writingPrompt, setWritingPrompt] = useState('pinyin')
+  const [learningMode, setLearningMode] = useState(false)
   const sortedSelected = [...selected].sort((a, b) => a - b)
 
   function toggleUnit(unit) {
@@ -31,7 +32,7 @@ export default function Home({ unitsMap, onStart }) {
       setError('Select at least one unit to start.')
       return
     }
-    onStart([...selected].sort((a, b) => a - b), { mode, writingPrompt })
+    onStart([...selected].sort((a, b) => a - b), { mode, writingPrompt, learningMode })
   }
 
   return (
@@ -112,6 +113,17 @@ export default function Home({ unitsMap, onStart }) {
           </div>
         )}
       </div>
+
+      <button
+        type="button"
+        className={`learning-toggle ${learningMode ? 'active' : ''}`}
+        onClick={() => setLearningMode((l) => !l)}
+      >
+        <Layers size={16} />
+        {learningMode
+          ? 'Learning mode: groups of 4, 5, 6…'
+          : 'All at once (turn on learning mode for growing groups)'}
+      </button>
 
       <button type="button" className="btn-primary start-btn" onClick={handleStart}>
         <Play size={18} />
