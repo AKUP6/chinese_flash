@@ -5,6 +5,7 @@ import unit2 from './unit2'
 import unit3 from './unit3'
 import unit4 from './unit4'
 import unit5 from './unit5'
+import unit6 from './unit6'
 
 export default {
   1: unit1,
@@ -12,4 +13,5 @@ export default {
   3: unit3,
   4: unit4,
   5: unit5,
+  6: unit6,
 }
